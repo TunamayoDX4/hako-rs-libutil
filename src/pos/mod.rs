@@ -10,6 +10,8 @@ use std::ops::{
     DivAssign, 
 };
 
+use serde::{Serialize, Deserialize};
+
 pub mod neighbor;
 pub mod artable;
 
@@ -18,6 +20,7 @@ pub mod artable;
 /// 箱庭諸島のマップ面積を表現するためのドメイン固有型。
 /// NonZeroU32整数で表現されたベクトル型です。
 #[derive(Debug, Clone, Copy)]
+#[derive(Serialize, Deserialize)]
 pub struct HMapSize([NonZeroU32; 2]);
 impl HMapSize {
     pub fn x(&self) -> &NonZeroU32 { &self.0[0] }
@@ -47,6 +50,7 @@ impl From<HMapSize> for [u32; 2] {
 /// 箱庭諸島の座標を表現するためのドメイン固有型。
 /// u32整数で表現された座標型です。
 #[derive(Debug, Clone, Copy)]
+#[derive(Serialize, Deserialize)]
 pub struct HMapPos([u32; 2]);
 impl HMapPos {
     pub fn x(&self) -> &u32 { &self.0[0] }
@@ -104,6 +108,7 @@ impl AddAssign<HMapDist> for HMapPos {
 /// 箱庭諸島の座標間の距離を表現するためのドメイン固有型。
 /// i64整数で表現されたベクトル型です。
 #[derive(Debug, Clone, Copy)]
+#[derive(Serialize, Deserialize)]
 pub struct HMapDist([i64; 2]);
 impl HMapDist {
     pub fn x(&self) -> &i64 { &self.0[0] }
