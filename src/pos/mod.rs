@@ -63,6 +63,14 @@ impl HMapPos {
     ) -> u64 {
         *self.x() as u64 + *self.y() as u64 * size.x().get() as u64
     }
+    pub fn deserial(
+        pos: u64, 
+        size: &HMapSize, 
+    ) -> Self {
+        let x = (pos % size.x().get() as u64) as u32;
+        let y = (pos / size.x().get() as u64) as u32;
+        Self([x, y])
+    }
     pub fn check(
         &self, 
         size: &HMapSize, 
